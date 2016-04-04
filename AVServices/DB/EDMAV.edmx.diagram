@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="41c5e027fde34b7cab4576faf338bb79" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.ASIGNATURA" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="DBModel.CATALOGO" Width="1.5" PointX="2.75" PointY="10.125" />
+        <EntityTypeShape EntityType="DBModel.CATALOGODETALLE" Width="1.5" PointX="5" PointY="9.5" />
+        <EntityTypeShape EntityType="DBModel.GRUPO" Width="1.5" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="DBModel.GRUPODETALLE" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="DBModel.HORARIO" Width="1.5" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="DBModel.LOGMSG" Width="1.5" PointX="7.75" PointY="9.25" />
+        <EntityTypeShape EntityType="DBModel.SALON" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBModel.USUARIO" Width="1.5" PointX="9.75" PointY="2.25" />
+        <AssociationConnector Association="DBModel.FK_GRUPODETALLE_ASIGNATURA" />
+        <AssociationConnector Association="DBModel.FK_HORARIO_ASIGNATURA" />
+        <AssociationConnector Association="DBModel.FK_CATALOGODETALLE_CATALOGOID" />
+        <AssociationConnector Association="DBModel.FK_GRUPODETALLE_GRUPO" />
+        <AssociationConnector Association="DBModel.FK_HORARIO_SALON" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

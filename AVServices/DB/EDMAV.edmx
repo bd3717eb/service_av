@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASIGNATURA">
+          <Key>
+            <PropertyRef Name="IDASIGNATURA" />
+          </Key>
+          <Property Name="IDASIGNATURA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASIGNATURADESCRIPCION" Type="nvarchar" MaxLength="150" />
+          <Property Name="RAMADESCRIPCION" Type="nvarchar" MaxLength="150" />
+          <Property Name="IDPROFESORASIGNADO" Type="int" />
+          <Property Name="ESTATUS_C" Type="int" />
+          <Property Name="CREADOR" Type="int" />
+          <Property Name="DATECREATION" Type="datetime" />
+          <Property Name="DATEUPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CATALOGO">
+          <Key>
+            <PropertyRef Name="CATALOGOID" />
+          </Key>
+          <Property Name="CATALOGOID" Type="int" Nullable="false" />
+          <Property Name="CATALOGODESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CATALOGOACTIVO" Type="bit" Nullable="false" />
+          <Property Name="OWNER" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATALOGODETALLE">
+          <Key>
+            <PropertyRef Name="CATALOGODETALLEID" />
+            <PropertyRef Name="CATALOGOID" />
+          </Key>
+          <Property Name="CATALOGODETALLEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATALOGOID" Type="int" Nullable="false" />
+          <Property Name="CATALOGODETALLEIDCLAVE" Type="int" Nullable="false" />
+          <Property Name="CATALOGODETALLECLAVE" Type="varchar" MaxLength="50" />
+          <Property Name="CATALOGODETALLEDESCRIPCION" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CREADOR" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CATALOGODETALLEACTIVO" Type="bit" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+          <Property Name="D0" Type="varchar(max)" />
+          <Property Name="D1" Type="varchar(max)" />
+          <Property Name="D2" Type="varchar(max)" />
+          <Property Name="D3" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GRUPO">
+          <Key>
+            <PropertyRef Name="IDGRUPO" />
+          </Key>
+          <Property Name="IDGRUPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRUPONUMERO" Type="varchar" MaxLength="10" />
+          <Property Name="GRUPODESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="IDUSUARIO_TUTOR" Type="int" />
+          <Property Name="IDUSUARIO_ORIENTADOR" Type="int" />
+          <Property Name="CICLO" Type="varchar" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="150" />
+          <Property Name="TURNO" Type="varchar" MaxLength="50" />
+          <Property Name="ESTATUS" Type="tinyint" />
+          <Property Name="ESTATUS_C" Type="int" />
+          <Property Name="CREADOR" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GRUPODETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDASIGNATURA" />
+            <PropertyRef Name="IDGRUPO" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDASIGNATURA" Type="int" Nullable="false" />
+          <Property Name="IDGRUPO" Type="int" Nullable="false" />
+          <Property Name="ESTATUS_C" Type="int" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+          <Property Name="CREADOR" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="D1" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="HORARIO">
+          <Key>
+            <PropertyRef Name="IDHORARIO" />
+          </Key>
+          <Property Name="IDHORARIO" Type="int" Nullable="false" />
+          <Property Name="HORAINICIO" Type="time" Precision="7" />
+          <Property Name="HORAFINAL" Type="time" Precision="7" />
+          <Property Name="IDDIA" Type="int" />
+          <Property Name="IDASIGNATURA" Type="int" />
+          <Property Name="IDSALON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ESTATUS_C" Type="int" Nullable="false" />
+          <Property Name="OWNER" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOGMSG">
+          <Key>
+            <PropertyRef Name="IDLOGMSG" />
+          </Key>
+          <Property Name="IDLOGMSG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" />
+          <Property Name="LOCATION" Type="varchar" MaxLength="250" />
+          <Property Name="OS_BROWSER" Type="varchar" MaxLength="50" />
+          <Property Name="FUNCTION_METHOD" Type="varchar" MaxLength="50" />
+          <Property Name="MODULE" Type="varchar" MaxLength="50" />
+          <Property Name="OWNER" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+          <Property Name="DETAIL" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SALON">
+          <Key>
+            <PropertyRef Name="IDSALON" />
+          </Key>
+          <Property Name="IDSALON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRESALON" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBREEDIFICIO" Type="varchar" MaxLength="50" />
+          <Property Name="REFERENCIAS" Type="nvarchar" MaxLength="150" />
+          <Property Name="ESTATUS_C" Type="int" Nullable="false" />
+          <Property Name="OWNER" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IDUSUARIO" />
+          </Key>
+          <Property Name="IDUSUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USUARIONAME" Type="varchar" MaxLength="15" />
+          <Property Name="CONTRASENIA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="APELLIDOPATERNO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="APELLIDOMATERNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMGUSER" Type="varchar" MaxLength="150" />
+          <Property Name="FECHAALTA" Type="datetime" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAILALTERNO" Type="varchar" MaxLength="50" />
+          <Property Name="CP" Type="varchar" MaxLength="5" />
+          <Property Name="CALLE" Type="varchar" MaxLength="50" />
+          <Property Name="NUMEROINTERIOR" Type="varchar" MaxLength="10" />
+          <Property Name="NUMEROEXTERIOR" Type="varchar" MaxLength="10" />
+          <Property Name="D_MNPIO" Type="varchar" MaxLength="50" />
+          <Property Name="D_CIUDAD" Type="varchar" MaxLength="50" />
+          <Property Name="D_ESTADO" Type="varchar" MaxLength="50" />
+          <Property Name="D_TIPO_ASENTA" Type="varchar" MaxLength="50" />
+          <Property Name="D_ASENTA" Type="varchar" MaxLength="50" />
+          <Property Name="REFERENCIADOMICILIO" Type="varchar" MaxLength="150" />
+          <Property Name="TELCASA" Type="varchar" MaxLength="20" />
+          <Property Name="TELMOVIL" Type="varchar" MaxLength="20" />
+          <Property Name="TELOTRO" Type="varchar" MaxLength="20" />
+          <Property Name="ANIONACIMIENTO" Type="datetime" />
+          <Property Name="TIPOUSUARIO_C" Type="int" Nullable="false" />
+          <Property Name="ESTATUS_C" Type="int" Nullable="false" />
+          <Property Name="MATRICULAESCOLAR" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="OWNER" Type="varchar" MaxLength="15" />
+          <Property Name="DATECREATION" Type="datetime" Nullable="false" />
+          <Property Name="DATEUPDATE" Type="datetime" />
+          <Property Name="D1" Type="varchar" MaxLength="100" />
+          <Property Name="D2" Type="varchar" MaxLength="100" />
+          <Property Name="D3" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_CATALOGODETALLE_CATALOGOID">
+          <End Role="CATALOGO" Type="Self.CATALOGO" Multiplicity="1" />
+          <End Role="CATALOGODETALLE" Type="Self.CATALOGODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="CATALOGOID" />
+            </Principal>
+            <Dependent Role="CATALOGODETALLE">
+              <PropertyRef Name="CATALOGOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRUPODETALLE_ASIGNATURA">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="1" />
+          <End Role="GRUPODETALLE" Type="Self.GRUPODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Principal>
+            <Dependent Role="GRUPODETALLE">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRUPODETALLE_GRUPO">
+          <End Role="GRUPO" Type="Self.GRUPO" Multiplicity="1" />
+          <End Role="GRUPODETALLE" Type="Self.GRUPODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRUPO">
+              <PropertyRef Name="IDGRUPO" />
+            </Principal>
+            <Dependent Role="GRUPODETALLE">
+              <PropertyRef Name="IDGRUPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HORARIO_ASIGNATURA">
+          <End Role="ASIGNATURA" Type="Self.ASIGNATURA" Multiplicity="0..1" />
+          <End Role="HORARIO" Type="Self.HORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Principal>
+            <Dependent Role="HORARIO">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HORARIO_SALON">
+          <End Role="SALON" Type="Self.SALON" Multiplicity="1" />
+          <End Role="HORARIO" Type="Self.HORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALON">
+              <PropertyRef Name="IDSALON" />
+            </Principal>
+            <Dependent Role="HORARIO">
+              <PropertyRef Name="IDSALON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="pa_AsignaturaInserta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DBModelStoreContainer">
+          <EntitySet Name="ASIGNATURA" EntityType="Self.ASIGNATURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOGO" EntityType="Self.CATALOGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOGODETALLE" EntityType="Self.CATALOGODETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRUPO" EntityType="Self.GRUPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRUPODETALLE" EntityType="Self.GRUPODETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HORARIO" EntityType="Self.HORARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGMSG" EntityType="Self.LOGMSG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALON" EntityType="Self.SALON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CATALOGODETALLE_CATALOGOID" Association="Self.FK_CATALOGODETALLE_CATALOGOID">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="CATALOGODETALLE" EntitySet="CATALOGODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRUPODETALLE_ASIGNATURA" Association="Self.FK_GRUPODETALLE_ASIGNATURA">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="GRUPODETALLE" EntitySet="GRUPODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRUPODETALLE_GRUPO" Association="Self.FK_GRUPODETALLE_GRUPO">
+            <End Role="GRUPO" EntitySet="GRUPO" />
+            <End Role="GRUPODETALLE" EntitySet="GRUPODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_ASIGNATURA" Association="Self.FK_HORARIO_ASIGNATURA">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="HORARIO" EntitySet="HORARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_SALON" Association="Self.FK_HORARIO_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="HORARIO" EntitySet="HORARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="pa_AsignaturaInserta" />
+          <EntitySet Name="ASIGNATURA" EntityType="DBModel.ASIGNATURA" />
+          <EntitySet Name="CATALOGO" EntityType="DBModel.CATALOGO" />
+          <EntitySet Name="CATALOGODETALLE" EntityType="DBModel.CATALOGODETALLE" />
+          <EntitySet Name="GRUPO" EntityType="DBModel.GRUPO" />
+          <EntitySet Name="GRUPODETALLE" EntityType="DBModel.GRUPODETALLE" />
+          <EntitySet Name="HORARIO" EntityType="DBModel.HORARIO" />
+          <EntitySet Name="LOGMSG" EntityType="DBModel.LOGMSG" />
+          <EntitySet Name="SALON" EntityType="DBModel.SALON" />
+          <EntitySet Name="USUARIO" EntityType="DBModel.USUARIO" />
+          <AssociationSet Name="FK_GRUPODETALLE_ASIGNATURA" Association="DBModel.FK_GRUPODETALLE_ASIGNATURA">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="GRUPODETALLE" EntitySet="GRUPODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_ASIGNATURA" Association="DBModel.FK_HORARIO_ASIGNATURA">
+            <End Role="ASIGNATURA" EntitySet="ASIGNATURA" />
+            <End Role="HORARIO" EntitySet="HORARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGODETALLE_CATALOGOID" Association="DBModel.FK_CATALOGODETALLE_CATALOGOID">
+            <End Role="CATALOGO" EntitySet="CATALOGO" />
+            <End Role="CATALOGODETALLE" EntitySet="CATALOGODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRUPODETALLE_GRUPO" Association="DBModel.FK_GRUPODETALLE_GRUPO">
+            <End Role="GRUPO" EntitySet="GRUPO" />
+            <End Role="GRUPODETALLE" EntitySet="GRUPODETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HORARIO_SALON" Association="DBModel.FK_HORARIO_SALON">
+            <End Role="SALON" EntitySet="SALON" />
+            <End Role="HORARIO" EntitySet="HORARIO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ASIGNATURA">
+          <Key>
+            <PropertyRef Name="IDASIGNATURA" />
+          </Key>
+          <Property Name="IDASIGNATURA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASIGNATURADESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="RAMADESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IDPROFESORASIGNADO" Type="Int32" />
+          <Property Name="ESTATUS_C" Type="Int32" />
+          <Property Name="CREADOR" Type="Int32" />
+          <Property Name="DATECREATION" Type="DateTime" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GRUPODETALLE" Relationship="DBModel.FK_GRUPODETALLE_ASIGNATURA" FromRole="ASIGNATURA" ToRole="GRUPODETALLE" />
+          <NavigationProperty Name="HORARIO" Relationship="DBModel.FK_HORARIO_ASIGNATURA" FromRole="ASIGNATURA" ToRole="HORARIO" />
+        </EntityType>
+        <EntityType Name="CATALOGO">
+          <Key>
+            <PropertyRef Name="CATALOGOID" />
+          </Key>
+          <Property Name="CATALOGOID" Type="Int32" Nullable="false" />
+          <Property Name="CATALOGODESCRIPCION" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CATALOGOACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="OWNER" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CATALOGODETALLE" Relationship="DBModel.FK_CATALOGODETALLE_CATALOGOID" FromRole="CATALOGO" ToRole="CATALOGODETALLE" />
+        </EntityType>
+        <EntityType Name="CATALOGODETALLE">
+          <Key>
+            <PropertyRef Name="CATALOGODETALLEID" />
+            <PropertyRef Name="CATALOGOID" />
+          </Key>
+          <Property Name="CATALOGODETALLEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATALOGOID" Type="Int32" Nullable="false" />
+          <Property Name="CATALOGODETALLEIDCLAVE" Type="Int32" Nullable="false" />
+          <Property Name="CATALOGODETALLECLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATALOGODETALLEDESCRIPCION" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CREADOR" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CATALOGODETALLEACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="D0" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CATALOGO" Relationship="DBModel.FK_CATALOGODETALLE_CATALOGOID" FromRole="CATALOGODETALLE" ToRole="CATALOGO" />
+        </EntityType>
+        <EntityType Name="GRUPO">
+          <Key>
+            <PropertyRef Name="IDGRUPO" />
+          </Key>
+          <Property Name="IDGRUPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRUPONUMERO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GRUPODESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDUSUARIO_TUTOR" Type="Int32" />
+          <Property Name="IDUSUARIO_ORIENTADOR" Type="Int32" />
+          <Property Name="CICLO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TURNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS" Type="Byte" />
+          <Property Name="ESTATUS_C" Type="Int32" />
+          <Property Name="CREADOR" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GRUPODETALLE" Relationship="DBModel.FK_GRUPODETALLE_GRUPO" FromRole="GRUPO" ToRole="GRUPODETALLE" />
+        </EntityType>
+        <EntityType Name="GRUPODETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDASIGNATURA" />
+            <PropertyRef Name="IDGRUPO" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDASIGNATURA" Type="Int32" Nullable="false" />
+          <Property Name="IDGRUPO" Type="Int32" Nullable="false" />
+          <Property Name="ESTATUS_C" Type="Int32" Nullable="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREADOR" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="D1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ASIGNATURA" Relationship="DBModel.FK_GRUPODETALLE_ASIGNATURA" FromRole="GRUPODETALLE" ToRole="ASIGNATURA" />
+          <NavigationProperty Name="GRUPO" Relationship="DBModel.FK_GRUPODETALLE_GRUPO" FromRole="GRUPODETALLE" ToRole="GRUPO" />
+        </EntityType>
+        <EntityType Name="HORARIO">
+          <Key>
+            <PropertyRef Name="IDHORARIO" />
+          </Key>
+          <Property Name="IDHORARIO" Type="Int32" Nullable="false" />
+          <Property Name="HORAINICIO" Type="Time" Precision="7" />
+          <Property Name="HORAFINAL" Type="Time" Precision="7" />
+          <Property Name="IDDIA" Type="Int32" />
+          <Property Name="IDASIGNATURA" Type="Int32" />
+          <Property Name="IDSALON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ESTATUS_C" Type="Int32" Nullable="false" />
+          <Property Name="OWNER" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ASIGNATURA" Relationship="DBModel.FK_HORARIO_ASIGNATURA" FromRole="HORARIO" ToRole="ASIGNATURA" />
+          <NavigationProperty Name="SALON" Relationship="DBModel.FK_HORARIO_SALON" FromRole="HORARIO" ToRole="SALON" />
+        </EntityType>
+        <EntityType Name="LOGMSG">
+          <Key>
+            <PropertyRef Name="IDLOGMSG" />
+          </Key>
+          <Property Name="IDLOGMSG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OS_BROWSER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FUNCTION_METHOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MODULE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OWNER" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SALON">
+          <Key>
+            <PropertyRef Name="IDSALON" />
+          </Key>
+          <Property Name="IDSALON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRESALON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBREEDIFICIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIAS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ESTATUS_C" Type="Int32" Nullable="false" />
+          <Property Name="OWNER" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="HORARIO" Relationship="DBModel.FK_HORARIO_SALON" FromRole="SALON" ToRole="HORARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="IDUSUARIO" />
+          </Key>
+          <Property Name="IDUSUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USUARIONAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENIA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDOPATERNO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDOMATERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMGUSER" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FECHAALTA" Type="DateTime" Precision="3" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAILALTERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CALLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMEROINTERIOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NUMEROEXTERIOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="D_MNPIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_CIUDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_TIPO_ASENTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_ASENTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIADOMICILIO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TELCASA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TELMOVIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TELOTRO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ANIONACIMIENTO" Type="DateTime" Precision="3" />
+          <Property Name="TIPOUSUARIO_C" Type="Int32" Nullable="false" />
+          <Property Name="ESTATUS_C" Type="Int32" Nullable="false" />
+          <Property Name="MATRICULAESCOLAR" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="OWNER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DATECREATION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATEUPDATE" Type="DateTime" Precision="3" />
+          <Property Name="D1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="D2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="D3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_GRUPODETALLE_ASIGNATURA">
+          <End Type="DBModel.ASIGNATURA" Role="ASIGNATURA" Multiplicity="1" />
+          <End Type="DBModel.GRUPODETALLE" Role="GRUPODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Principal>
+            <Dependent Role="GRUPODETALLE">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HORARIO_ASIGNATURA">
+          <End Type="DBModel.ASIGNATURA" Role="ASIGNATURA" Multiplicity="0..1" />
+          <End Type="DBModel.HORARIO" Role="HORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGNATURA">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Principal>
+            <Dependent Role="HORARIO">
+              <PropertyRef Name="IDASIGNATURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGODETALLE_CATALOGOID">
+          <End Type="DBModel.CATALOGO" Role="CATALOGO" Multiplicity="1" />
+          <End Type="DBModel.CATALOGODETALLE" Role="CATALOGODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGO">
+              <PropertyRef Name="CATALOGOID" />
+            </Principal>
+            <Dependent Role="CATALOGODETALLE">
+              <PropertyRef Name="CATALOGOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRUPODETALLE_GRUPO">
+          <End Type="DBModel.GRUPO" Role="GRUPO" Multiplicity="1" />
+          <End Type="DBModel.GRUPODETALLE" Role="GRUPODETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRUPO">
+              <PropertyRef Name="IDGRUPO" />
+            </Principal>
+            <Dependent Role="GRUPODETALLE">
+              <PropertyRef Name="IDGRUPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HORARIO_SALON">
+          <End Type="DBModel.SALON" Role="SALON" Multiplicity="1" />
+          <End Type="DBModel.HORARIO" Role="HORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALON">
+              <PropertyRef Name="IDSALON" />
+            </Principal>
+            <Dependent Role="HORARIO">
+              <PropertyRef Name="IDSALON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+          <FunctionImportMapping FunctionImportName="pa_AsignaturaInserta" FunctionName="DBModel.Store.pa_AsignaturaInserta" />
+          <EntitySetMapping Name="ASIGNATURA">
+            <EntityTypeMapping TypeName="DBModel.ASIGNATURA">
+              <MappingFragment StoreEntitySet="ASIGNATURA">
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="IDPROFESORASIGNADO" ColumnName="IDPROFESORASIGNADO" />
+                <ScalarProperty Name="RAMADESCRIPCION" ColumnName="RAMADESCRIPCION" />
+                <ScalarProperty Name="ASIGNATURADESCRIPCION" ColumnName="ASIGNATURADESCRIPCION" />
+                <ScalarProperty Name="IDASIGNATURA" ColumnName="IDASIGNATURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGO">
+            <EntityTypeMapping TypeName="DBModel.CATALOGO">
+              <MappingFragment StoreEntitySet="CATALOGO">
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="CATALOGOACTIVO" ColumnName="CATALOGOACTIVO" />
+                <ScalarProperty Name="CATALOGODESCRIPCION" ColumnName="CATALOGODESCRIPCION" />
+                <ScalarProperty Name="CATALOGOID" ColumnName="CATALOGOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGODETALLE">
+            <EntityTypeMapping TypeName="DBModel.CATALOGODETALLE">
+              <MappingFragment StoreEntitySet="CATALOGODETALLE">
+                <ScalarProperty Name="D3" ColumnName="D3" />
+                <ScalarProperty Name="D2" ColumnName="D2" />
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="D0" ColumnName="D0" />
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="CATALOGODETALLEACTIVO" ColumnName="CATALOGODETALLEACTIVO" />
+                <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
+                <ScalarProperty Name="CATALOGODETALLEDESCRIPCION" ColumnName="CATALOGODETALLEDESCRIPCION" />
+                <ScalarProperty Name="CATALOGODETALLECLAVE" ColumnName="CATALOGODETALLECLAVE" />
+                <ScalarProperty Name="CATALOGODETALLEIDCLAVE" ColumnName="CATALOGODETALLEIDCLAVE" />
+                <ScalarProperty Name="CATALOGOID" ColumnName="CATALOGOID" />
+                <ScalarProperty Name="CATALOGODETALLEID" ColumnName="CATALOGODETALLEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRUPO">
+            <EntityTypeMapping TypeName="DBModel.GRUPO">
+              <MappingFragment StoreEntitySet="GRUPO">
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+                <ScalarProperty Name="TURNO" ColumnName="TURNO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="CICLO" ColumnName="CICLO" />
+                <ScalarProperty Name="IDUSUARIO_ORIENTADOR" ColumnName="IDUSUARIO_ORIENTADOR" />
+                <ScalarProperty Name="IDUSUARIO_TUTOR" ColumnName="IDUSUARIO_TUTOR" />
+                <ScalarProperty Name="GRUPODESCRIPCION" ColumnName="GRUPODESCRIPCION" />
+                <ScalarProperty Name="GRUPONUMERO" ColumnName="GRUPONUMERO" />
+                <ScalarProperty Name="IDGRUPO" ColumnName="IDGRUPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRUPODETALLE">
+            <EntityTypeMapping TypeName="DBModel.GRUPODETALLE">
+              <MappingFragment StoreEntitySet="GRUPODETALLE">
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="CREADOR" ColumnName="CREADOR" />
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="IDGRUPO" ColumnName="IDGRUPO" />
+                <ScalarProperty Name="IDASIGNATURA" ColumnName="IDASIGNATURA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HORARIO">
+            <EntityTypeMapping TypeName="DBModel.HORARIO">
+              <MappingFragment StoreEntitySet="HORARIO">
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="IDSALON" ColumnName="IDSALON" />
+                <ScalarProperty Name="IDASIGNATURA" ColumnName="IDASIGNATURA" />
+                <ScalarProperty Name="IDDIA" ColumnName="IDDIA" />
+                <ScalarProperty Name="HORAFINAL" ColumnName="HORAFINAL" />
+                <ScalarProperty Name="HORAINICIO" ColumnName="HORAINICIO" />
+                <ScalarProperty Name="IDHORARIO" ColumnName="IDHORARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGMSG">
+            <EntityTypeMapping TypeName="DBModel.LOGMSG">
+              <MappingFragment StoreEntitySet="LOGMSG">
+                <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="MODULE" ColumnName="MODULE" />
+                <ScalarProperty Name="FUNCTION_METHOD" ColumnName="FUNCTION_METHOD" />
+                <ScalarProperty Name="OS_BROWSER" ColumnName="OS_BROWSER" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="IDLOGMSG" ColumnName="IDLOGMSG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALON">
+            <EntityTypeMapping TypeName="DBModel.SALON">
+              <MappingFragment StoreEntitySet="SALON">
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="REFERENCIAS" ColumnName="REFERENCIAS" />
+                <ScalarProperty Name="NOMBREEDIFICIO" ColumnName="NOMBREEDIFICIO" />
+                <ScalarProperty Name="NOMBRESALON" ColumnName="NOMBRESALON" />
+                <ScalarProperty Name="IDSALON" ColumnName="IDSALON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="DBModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="D3" ColumnName="D3" />
+                <ScalarProperty Name="D2" ColumnName="D2" />
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="DATEUPDATE" ColumnName="DATEUPDATE" />
+                <ScalarProperty Name="DATECREATION" ColumnName="DATECREATION" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="MATRICULAESCOLAR" ColumnName="MATRICULAESCOLAR" />
+                <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+                <ScalarProperty Name="TIPOUSUARIO_C" ColumnName="TIPOUSUARIO_C" />
+                <ScalarProperty Name="ANIONACIMIENTO" ColumnName="ANIONACIMIENTO" />
+                <ScalarProperty Name="TELOTRO" ColumnName="TELOTRO" />
+                <ScalarProperty Name="TELMOVIL" ColumnName="TELMOVIL" />
+                <ScalarProperty Name="TELCASA" ColumnName="TELCASA" />
+                <ScalarProperty Name="REFERENCIADOMICILIO" ColumnName="REFERENCIADOMICILIO" />
+                <ScalarProperty Name="D_ASENTA" ColumnName="D_ASENTA" />
+                <ScalarProperty Name="D_TIPO_ASENTA" ColumnName="D_TIPO_ASENTA" />
+                <ScalarProperty Name="D_ESTADO" ColumnName="D_ESTADO" />
+                <ScalarProperty Name="D_CIUDAD" ColumnName="D_CIUDAD" />
+                <ScalarProperty Name="D_MNPIO" ColumnName="D_MNPIO" />
+                <ScalarProperty Name="NUMEROEXTERIOR" ColumnName="NUMEROEXTERIOR" />
+                <ScalarProperty Name="NUMEROINTERIOR" ColumnName="NUMEROINTERIOR" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="EMAILALTERNO" ColumnName="EMAILALTERNO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FECHAALTA" ColumnName="FECHAALTA" />
+                <ScalarProperty Name="IMGUSER" ColumnName="IMGUSER" />
+                <ScalarProperty Name="APELLIDOMATERNO" ColumnName="APELLIDOMATERNO" />
+                <ScalarProperty Name="APELLIDOPATERNO" ColumnName="APELLIDOPATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="CONTRASENIA" ColumnName="CONTRASENIA" />
+                <ScalarProperty Name="USUARIONAME" ColumnName="USUARIONAME" />
+                <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
